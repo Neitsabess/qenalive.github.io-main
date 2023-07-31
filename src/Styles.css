@@ -1,0 +1,45 @@
+.Banner_Image {
+    max-width: 50%;
+    margin: auto;
+}
+
+.ChartContainer {
+    width:35%;
+}
+
+.setup_box {
+    min-width: 35vw;
+    min-height: 10vh;
+    padding: 1vw;
+}
+
+.setup_box h2 {
+    font-weight: 600;
+    font-size: 20px ;
+}
+
+.setup_box button {
+    background-color: rgb(7, 118, 230);
+    color: white;
+    width: 5vw;
+    padding: 0.3vh;
+    border-radius: 5px;
+    margin-top: 5%;
+    float: right;
+}
+
+.setup_box button:hover {
+    background-color: rgb(6, 108, 211);
+}
+
+.setup_box button:active  {
+    background-color: rgb(6, 98, 191);
+}
+
+.setup_box button:active .setup_box {
+    color: yellow;
+}
+
+
+
+
