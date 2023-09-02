@@ -19,8 +19,9 @@
 }
 
 .setup_box button {
-    background-color: rgb(7, 118, 230);
-    color: white;
+    background-color: #cbd5e0;
+    color: black;
+    font-weight: 600;
     width: 5vw;
     padding: 0.3vh;
     border-radius: 5px;
@@ -29,17 +30,119 @@
 }
 
 .setup_box button:hover {
-    background-color: rgb(6, 108, 211);
+    background-color: #bfc8d2;
 }
 
 .setup_box button:active  {
-    background-color: rgb(6, 98, 191);
+    background-color: #a9b2bb;
 }
 
 .setup_box button:active .setup_box {
     color: yellow;
 }
 
+.setup_box input {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom-width: .4vh;
+    animation: input_animations .5s forwards;
+}
 
 
+@keyframes input_animations {
+    0% {
+        height: 0;
+        margin: -.9vh;
+    }
 
+
+    100% {
+        height: 3vh;
+    }
+}
+
+.setup_box input:focus {
+    outline: none;
+}
+
+#first {
+    animation: box_animation .5s forwards
+}
+
+@keyframes box_animation {
+    0% {
+        height: 16vh;
+    }
+    
+    100% {
+        height: 25vh;
+    }
+}
+
+.settings {
+    list-style-type: none;
+    width: 100%;
+}
+
+.settings span {
+    margin-right: 2%;
+    font-weight:normal;
+}
+
+.settings p {
+    margin-right: 70%;
+    width: 20%;
+}
+
+.settings li {
+    display: flex;
+    padding: 8px;
+    margin-bottom: 3vh;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #e3e8ed;
+}
+
+.settings li:hover {
+    background-color: #edf2f7;
+    transition: .2s;
+}
+
+.options {
+    width: 7vw;
+    position: fixed;
+    background-color: white;
+    padding: 4px;
+    border-radius: 5px;
+    bottom: 20vh;
+    animation: avatar_click_animation .35s;
+}
+
+.options a {
+    width: 100%;
+    margin-bottom: .5vh;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.options a:hover {
+    background-color: rgb(234, 229, 229);
+    cursor: pointer;
+}
+
+.options a:active {
+    background-color: rgba(234, 229, 229, 0.633);
+}
+
+@keyframes avatar_click_animation {
+    0% {
+        height: 0;
+        color: rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        height: 12.5vh;
+        color: rgb(0, 0, 0);
+    }
+}

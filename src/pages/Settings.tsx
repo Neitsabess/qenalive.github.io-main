@@ -15,6 +15,8 @@ import {
     FormLabel,
     ModalFooter,
     Input,
+HStack,
+    VStack,
 } from '@chakra-ui/react';
 import { supabase } from '../supabase';
 import CheckAndTitle from '../components/CheckAndTitle';
@@ -23,10 +25,11 @@ import CheckAndTitle from '../components/CheckAndTitle';
 export default function Profile() {
 
     // Variables ----------------------------------------------------------------------
-
+let user_id = JSON.parse(localStorage.getItem("sb-vwtqojpmqrvrowwsrwci-auth-token")).user.id
+    console.log(user_id);
     // set up state variables for the name modal and user name input fields
     const [showNameModal, setShowNameModal] = useState(false);
-    const [person, setPerson] = useState({ name: '', username: '', biography: '', avatarurl: '', userid: '' });
+    const [person, setPerson] = useState({ first_name: '', last_name: '', userid: '' });
 
     // UseEffects ----------------------------------------------------------------------
 
@@ -35,26 +38,25 @@ export default function Profile() {
         const getProfile = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             const { data, error } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('userid', user?.id)
-                .single();
-
+                .from('user_profile')
+                .select()
+                .eq('auth_id', user_id)
+                
             if (error) {
                 console.log(error);
             } else {
                 // console.log(data);
                 setPerson({
-                    name: data.name,
-                    username: data.username,
-                    biography: data.biography,
-                    avatarurl: data.avatarurl,
-                    userid: data.userid,
+                    first_name: data[0]?.first_name,
+                    last_name: data[0]?.last_name,
+                    userid: data[0]?.auth_id,
                 });
             }
         };
         getProfile();
     }, []);
+
+console.log(person);
 
 
     // Functions ----------------------------------------------------------------------
@@ -66,13 +68,12 @@ export default function Profile() {
         console.log(user);
 
         const { data, error } = await supabase
-            .from('profiles')
+            .from('user_profile')
             .update({
-                name: person.name,
-                biography: person.biography,
-                avatarurl: person.avatarurl,
+                first_name: person.first_name,
+                last_name: person.last_name,
             })
-            .eq('userid', user?.id);
+            .eq('auth_id', user_id);
 
         if (error) {
             console.log(error);
@@ -92,17 +93,18 @@ export default function Profile() {
 
     return (
         // <CheckAndTitle title='Settings'>
-            <Stack
+            <HStack
                 direction={['column', null, 'row']}
                 mt={12}
+w="80vw"
             >
-                <Box ml={["auto", 12]} mt={6} mr={["auto", 12]}>
-                    <Avatar boxSize={300} name={person.name} src={person.avatarurl} />
+                <Box ml={["auto", 12]} mr={["auto", 12]} mb="30vh">
+                    <Avatar boxSize={300} name={person.first_name} src={person.avatarurl} />
                     <Heading as="h1" size="xl" mt={4}>
-                        {person.username}
+                        {person.last_name}
                     </Heading>
                     <Text fontSize="lg" color="gray.500">
-                        {person.name}
+                        {person.first_name}
                     </Text>
                     <Button mt={4} onClick={handleEditProfile} w={"full"}>
                         Edit Profile
@@ -115,14 +117,25 @@ export default function Profile() {
                                 <ModalHeader>Edit Profile Information</ModalHeader>
                                 <ModalBody>
                                     <FormControl>
-                                        <FormLabel>Full name</FormLabel>
+                                        <FormLabel>Fist Name</FormLabel>
                                         <Input
                                             placeholder="Uppercase and lowercase letters only"
-                                            value={person.name}
+                                            value={person.first_name}
                                             onInput={(e) => {
                                                 e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-Z ]/g, '');
                                             }}
-                                            onChange={(e) => setPerson((prev) => ({ ...prev, name: e.target.value }))}
+                                            onChange={(e) => setPerson((prev) => ({ ...prev, first_name: e.target.value }))}
+                                        />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel>Last Name</FormLabel>
+                                        <Input
+                                            placeholder="Uppercase and lowercase letters only"
+                                            value={person.last_name}
+                                            onInput={(e) => {
+                                                e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-Z ]/g, '');
+                                            }}
+                                            onChange={(e) => setPerson((prev) => ({ ...prev, last_name: e.target.value }))}
                                         />
                                     </FormControl>
                                     <FormControl mt={4}>
@@ -144,13 +157,27 @@ export default function Profile() {
                     )}
                 </Box>
 
-                <Box pt={12} pl={4} pr={4} w={'full'}>
-                    <Heading as="h1" size="xl" mb={4} >
-                        Settings
-                    </Heading>
+                <VStack pt={12} pl={4} pr={4} w="100vw" pos="relative" bottom="25vh">
+                    <ul className='settings'>
+                        <li>
+                            <span className="material-symbols-outlined">key</span>
+                            <p>Manage Password</p>
+                            <i className="material-symbols-outlined">navigate_next</i>
+                        </li>
+                        {/* <li>
+                            <span className="material-symbols-outlined">mail</span>
+                            <p>Change Email</p>
+                            <i className="material-symbols-outlined">navigate_next</i>
+                        </li> */}
+                        <li>
+                            <span className="material-symbols-outlined">smartphone</span>
+                            <p>Phone</p>
+                            <i className="material-symbols-outlined">navigate_next</i>
+                        </li>
+                    </ul>
 
-                </Box>
-            </Stack>
+                </VStack>
+            </HStack>
         // </CheckAndTitle>
     );
 }

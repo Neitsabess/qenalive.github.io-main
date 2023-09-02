@@ -1,5 +1,5 @@
 import { Box, Button, Center, HStack, VStack } from '@chakra-ui/react';
-import { GradeChart } from '../components/Chart';
+// import { GradeChart } from '../components/Chart';
 
 export function ClassDashboard() {
   return (
@@ -8,7 +8,7 @@ export function ClassDashboard() {
         <Center>
           <VStack>
             <VStack padding={'3%'} bgColor="white" borderRadius={'9px'}>
-              <GradeChart />
+              {/* <GradeChart /> */}
             </VStack>
             <Button marginTop={'20%'}>Join Session</Button>
           </VStack>
