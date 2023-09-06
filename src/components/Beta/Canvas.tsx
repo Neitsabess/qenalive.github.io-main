@@ -15,8 +15,6 @@ export default function BetaCover() {
                 height: "100vh",
                 width: "100vw",
                 animation: "moveDots 10s linear infinite alternate",
-
-
             }}
         >
         </Box>

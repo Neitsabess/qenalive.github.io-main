@@ -5,7 +5,8 @@ import { supabase } from '../supabase';
 import { useNavigate } from 'react-router';
 
 export function SetupPage() {
-  let token = JSON.parse(localStorage.getItem("sb-vwtqojpmqrvrowwsrwci-auth-token")).user.id
+
+let token = JSON.parse(localStorage.getItem("sb-vwtqojpmqrvrowwsrwci-auth-token")).user.id
   let toast = useToast()
   let navigate = useNavigate()
 
@@ -20,7 +21,7 @@ export function SetupPage() {
     .eq( "auth_id", token )
 
     if (!error){
-      navigate("/session")
+      navigate("/home")
     }
   }
   
@@ -63,8 +64,8 @@ export function SetupPage() {
       <Stack position="fixed" bgColor="white" borderRadius='5px'  borderColor='#cbd5e0' borderTopWidth="9px">
         <div className='setup_box' id={state}>
           <VStack alignItems='left'>
-            <h2>Finish setting up your account</h2>
-            {state === 'first' && (
+          <h2>Finish setting up your account</h2>
+          {state === 'first' && (
             <>
               <input placeholder='First Name' value={first_name} onChange={e => setFirst_Name(e.target.value)}></input>
               <input placeholder='Last Name' value={last_name} onChange={e => setLast_Name(e.target.value)}></input>

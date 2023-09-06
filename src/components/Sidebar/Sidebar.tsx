@@ -181,7 +181,7 @@ function Sidebar({ isMobile, handleMouseEnter, handleMouseLeave, isCollapsed, on
                     <Avatar maxWidth="100%" maxHeight="100%" borderRadius="full" onClick={e => change_state()} />
                     {option_state && (
                         <Options />
-                    )}
+)}
                 </Flex>
 
             </Stack>

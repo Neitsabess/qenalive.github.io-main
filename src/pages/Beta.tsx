@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function BetaPage() {
   const navigate = useNavigate();
-
+  
   return (
     <Box position="relative" w="100vw">
       {/* 1st Page --------------------------------------------------------------------------------*/}

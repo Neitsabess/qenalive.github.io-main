@@ -164,11 +164,6 @@ w="80vw"
                             <p>Manage Password</p>
                             <i className="material-symbols-outlined">navigate_next</i>
                         </li>
-                        {/* <li>
-                            <span className="material-symbols-outlined">mail</span>
-                            <p>Change Email</p>
-                            <i className="material-symbols-outlined">navigate_next</i>
-                        </li> */}
                         <li>
                             <span className="material-symbols-outlined">smartphone</span>
                             <p>Phone</p>

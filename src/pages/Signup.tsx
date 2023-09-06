@@ -21,9 +21,9 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import { FaLock, FaUserAlt } from 'react-icons/fa';
 import { useNavigate, Link } from 'react-router-dom';
-import { supabase } from '../supabase';
 import Canvas from '../components/Beta/Canvas';
 import { AtSignIcon } from '@chakra-ui/icons';
+import { supabase } from '../supabase';
 
 const CFaLock = chakra(FaLock);
 
@@ -44,6 +44,7 @@ export default function SignUpPage() {
   // Supabase
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  console.log(import.meta.env.VITE_SUPABASE_KEY);
 
   const [isLoading, setIsLoading] = useState(false); //for login loading
   const loading = () => {

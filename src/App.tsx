@@ -13,6 +13,7 @@ import Settings from './pages/Settings'
 import {ClassDashboard} from './pages/ClassDashboard'
 import {SetupPage} from './pages/Setup'
 import { Flex } from "@chakra-ui/react";
+import Versions from "./pages/Versions";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
       <Routes>
         <Route path='/'>
           <Route path='' element={<BetaPage />} />
+          <Route path='/home' element={<Main/>} >
+            <Route path='settings' element={<Settings />} />
+          </Route>
           <Route path='/room/:roomCode' element={<Room/>} />
           <Route path='login' element={<Login/>} />
           <Route path='setup' element={<SetupPage />} />
@@ -30,13 +34,11 @@ function App() {
           <Route path='checkyouremail' element={<CheckVerification />} />
           <Route path='privatepolicy' element={<PrivatePolicy />} />
         </Route>
-        
-        <Route path='/home' element={<Main/>} >
-          <Route path='session' element={<Session />} />
-          <Route path='dashboard' element={<ClassDashboard />} />
-          <Route path='settings' element={<Settings />} />
-          <Route path="*" element={<Error404/>} />
-        </Route>
+
+        <Route path='session' element={<Session />} />
+        <Route path='dashboard' element={<ClassDashboard />} />
+        <Route path='versions' element={<Versions />} />
+        <Route path="*" element={<Error404/>} />
       </Routes>
     </Flex>
   );
